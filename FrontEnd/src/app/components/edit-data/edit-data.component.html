@@ -1,0 +1,69 @@
+<mat-toolbar class="nav" color="primary">
+  <span class="bob">Edit Data</span>
+  <button mat-button routerLink=""><mat-icon>backspace</mat-icon></button>
+</mat-toolbar>
+
+
+<!-- Added Loading Spinner  -->
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div  *ngIf="!loading" class="center">
+  <form
+    *ngIf="single"
+    [formGroup]="form"
+    (ngSubmit)="sendData(form.value)"
+    class="box"
+  >
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <input 
+          class="input"
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+        />
+      </div>
+    </div>
+    <div formGroupName="properties">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Name"
+            formControlName="name"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Age</label>
+        <div class="control">
+          <input
+            class="input"
+            type="number"
+            placeholder="Age"
+            formControlName="age"
+          />
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <label class="checkbox">
+      <input type="checkbox" formControlName="completed" />
+      Important
+    </label>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Submit</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-light" routerLink="">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,28 @@
+@import '../../../../node_modules/bulma/bulma.sass';
+
+
+.box{
+    background-color: white;
+    min-height: 200px;
+    width: 70%;
+    border-radius: 5px;
+    padding: 35px;
+}
+
+.checkbox{
+    padding-bottom: 25px;
+}
+
+em{
+    color:red;
+    display:inline-block;
+    padding-bottom: 10px;
+}
+
+.bob{
+    flex-grow: 1;
+}
+
+mat-icon{
+    padding-right:13px;
+}

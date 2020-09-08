@@ -1,0 +1,14 @@
+.box {
+  min-height: 200px;
+  width: 70%;
+  border-radius: 5px;
+  padding: 35px;
+}
+
+th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+   padding-right: 0px; 
+}
+
+mat-icon{
+  cursor:pointer;
+}

@@ -1,0 +1,83 @@
+
+<mat-toolbar class="nav" color="primary">
+  <span class="bob">Data Display</span>
+  <button  mat-button routerLink="/add" ><mat-icon>library_add</mat-icon></button>
+</mat-toolbar>
+
+<!-- Added Loading Spinner  -->
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div *ngIf="!loading" class="center">
+  <table  *ngIf="dataSource" mat-table [dataSource]="dataSource" class="box">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element?.num }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element?.data[0].description }}
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="importance">
+      <th mat-header-cell *matHeaderCellDef>Importance</th>
+      <ng-container *matCellDef="let element">
+        <td mat-cell *ngIf="!element?.data[0].completed">Light</td>
+        <td style="color: red" mat-cell *ngIf="element.data[0].completed">
+          Heavy
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <ng-container *matCellDef="let element">
+        <td mat-cell *ngIf="element?.data[0].properties">
+          {{ element.data[0].properties.name}}
+        </td>
+        <td mat-cell *ngIf="element?.data[0].properties === null">
+          No Value
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef>Age</th>
+      <ng-container *matCellDef="let element">
+        <td style="padding-right: 10px;" mat-cell *ngIf="element?.data[0].properties">
+          {{ element.data[0].properties.age}}
+        </td>
+        <td mat-cell *ngIf="element?.data[0].properties === null">
+          No Value
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <ng-container  matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td style="padding-right: 10px;" mat-cell *matCellDef="let element">
+        <mat-icon [routerLink]="[element.data[0].id,'edit']">edit</mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="delete(element.data[0].id)">delete</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+

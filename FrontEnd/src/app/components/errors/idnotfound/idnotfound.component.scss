@@ -1,0 +1,22 @@
+.notFound{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    padding:20px;
+}
+
+h1 {
+  font-size: 30px;
+  padding: 20px;
+}
+
+.button{
+  background-color: #555555;
+  color:white;
+}
+
+img{
+    width: 25%;
+}

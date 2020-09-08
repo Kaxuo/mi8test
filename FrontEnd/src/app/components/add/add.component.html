@@ -1,0 +1,106 @@
+<mat-toolbar class="nav" color="primary">
+  <span class="bob">Add Data</span>
+  <button mat-button routerLink=""><mat-icon>backspace</mat-icon></button>
+</mat-toolbar>
+
+
+<div class="center">
+  <form [formGroup]="form" (ngSubmit)="sendData(form.value)" class="box">
+    <div class="field">
+      <label class="label">Description</label>
+      <em
+        *ngIf="
+          form.controls.description?.errors?.minlength &&
+          form.controls.description?.touched
+        "
+      >
+        5 characters at least</em
+      >
+      <em
+        *ngIf="
+          form.controls.description.invalid &&
+          form.controls.description?.errors?.required &&
+          form.controls.description?.touched
+        "
+      >
+        Required</em
+      >
+
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+        />
+      </div>
+    </div>
+    <div formGroupName="properties">
+      <div class="field">
+        <label class="label">Name</label>
+        <em
+          *ngIf="
+            form.get('properties.name').hasError('minlength') &&
+            form.get('properties.name').touched
+          "
+        >
+          2 characters at least</em
+        >
+        <em
+          *ngIf="
+            form.get('properties.name').hasError('required') &&
+            form.get('properties.name').touched
+          "
+        >
+          Required</em
+        >
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Name"
+            formControlName="name"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Age</label>
+        <em *ngIf="form.get('properties.age').hasError('pattern') && form.get('properties.age').touched">
+          1 or 2 digits </em
+        >
+        <em
+          *ngIf="
+            form.get('properties.age').hasError('required') &&
+            form.get('properties.age').touched
+          "
+        >
+          Required</em
+        >
+        <div class="control">
+          <input
+            class="input"
+            type="number"
+            placeholder="Age"
+            formControlName="age"
+          />
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <label class="checkbox">
+      <input type="checkbox" formControlName="completed" />
+      Important
+    </label>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button [disabled]="form.invalid" class="button is-link">Submit</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-light" routerLink="">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
